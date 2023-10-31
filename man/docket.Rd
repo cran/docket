@@ -2,14 +2,14 @@
 % Please edit documentation in R/main.r
 \name{docket}
 \alias{docket}
-\title{Replace flags in template document with data from R environment}
+\title{Create documents}
 \usage{
 docket(filename, dictionary, outputName)
 }
 \arguments{
-\item{filename}{The file path to the document template. Supports .doc and .docx formats}
+\item{filename}{The file path to the document template}
 
-\item{dictionary}{A data frame where each row represents a flag in the document}
+\item{dictionary}{A data frame where each row represents a flag in the template document and its replacement value}
 
 \item{outputName}{The file path and name for the saved output document}
 }
@@ -17,8 +17,8 @@ docket(filename, dictionary, outputName)
 Generates a new .doc or .docx file with the flags replaced by the specified data
 }
 \description{
-Scans the input .doc or .docx file for specified flags, as defined in the dictionary,
-and replaces them with corresponding data. The edited content is then saved to a new document.
+Scans the input template file for specified flags as defined in the dictionary,
+and replaces them with corresponding data. The edited content is then saved to a new document
 }
 \examples{
 # Path to the sample template included in the package

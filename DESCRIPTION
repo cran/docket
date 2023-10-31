@@ -1,6 +1,6 @@
 Package: docket
 Title: Automated Document Template Processing
-Version: 1.11
+Version: 1.20
 Authors@R: c(
     person(given = "Jonathan", family = "Conrad", email = "JonathanGConrad@gmail.com", role = c("aut", "cre")),
     person(given = "Ian", family = "Conrad", email = "ianwconrad11@gmail.com", role = "ctb")
@@ -10,14 +10,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports: stringr, XML, xml2, zip
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/JonathanConrad98/docket
 BugReports: https://github.com/JonathanConrad98/docket/issues
+Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2023-10-28 19:22:22 UTC; Jonra
+Packaged: 2023-10-31 20:45:18 UTC; Jonra
 Author: Jonathan Conrad [aut, cre],
   Ian Conrad [ctb]
 Maintainer: Jonathan Conrad <JonathanGConrad@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-10-30 13:00:05 UTC
+Date/Publication: 2023-10-31 22:40:02 UTC
