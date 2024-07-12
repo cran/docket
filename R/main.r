@@ -22,10 +22,10 @@ check_file <- function(filename){
   }
 
   #Check if the temp file already exists
-  if (file.exists(paste0(filename, "_dockettemp"))) {
+  if (file.exists(paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp"))) {
     close_unzip_file(filename)
-    if (file.exists(paste0(filename, "_dockettemp"))) {
-      warning(paste("ERROR: Temp file for document generation already exists:", paste0(filename, "_dockettemp")))
+    if (file.exists(paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp"))) {
+      warning(paste("ERROR: Temp file for document generation already exists:", paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp")))
       return(FALSE)
     } else {
       return(TRUE)
@@ -62,7 +62,7 @@ unzip_file <- function(filename){
     return(FALSE)
   }
 
-  temp_dir <- paste0(filename, "_dockettemp") #Temporary directory for the unzipped content
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp") #Temporary directory for the unzipped content
 
   dir.create(path = temp_dir)
 
@@ -79,7 +79,7 @@ unzip_file <- function(filename){
 ##Deletes the temporary hold file
 ##
 close_unzip_file <- function(filename) {
-  temp_dir <- paste0(filename, "_dockettemp")
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp")
   unlink(temp_dir, recursive = TRUE)
 
   if (file.exists(temp_dir) == TRUE){
@@ -92,8 +92,8 @@ close_unzip_file <- function(filename) {
 ##
 open_zipfile <- function(filename) {
   unzip_file(filename)
-  temp_dir <- paste0(filename, "_dockettemp")
-  temp_dir_xml <- paste0(filename, "_dockettemp/word/document.xml")
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp")
+  temp_dir_xml <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp/word/document.xml")
 
   if (!file.exists(temp_dir_xml)) {
     close_unzip_file(temp_dir)
@@ -260,7 +260,7 @@ getPrivateDictionary <- function(xml_data){
 #' @examples
 #' # Path to the sample template included in the package
 #' template_path <- system.file("template_document", "Template.docx", package="docket")
-#' output_path <- paste0(dirname(template_path), "/output document.docx")
+#' output_path <- paste0(normalizePath(tempdir(), winslash = "/"), "/output document.docx")
 #'
 #' # Create a dictionary by using the getDictionary function on the sample template file
 #' result <- getDictionary(template_path)
@@ -289,7 +289,7 @@ docket <- function(filename, dictionary, outputName) {
   old_wd <- getwd()
   on.exit(setwd(old_wd))
 
-  temp_dir <- paste0(filename, "_dockettemp") #Temp directory for holding files
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp") #Temp directory for holding files
 
   zipfile_xml <- open_zipfile(filename) #Creates temp file and extracts the content
 

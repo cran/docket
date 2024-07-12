@@ -13,7 +13,9 @@
 #' @examples
 #' # Path to the sample template file included in the package
 #' template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-#' output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
+#'
+#' temp_dir <- normalizePath(tempdir(), winslash = "/")
+#' output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
 #'
 #' # Create a dictionary by using the getDictionary function on the sample template file
 #' result <- getBatchDictionary(template_path, output_paths)
@@ -77,7 +79,9 @@ getBatchDictionary <- function(filename, outputFiles, dictionaryLength = length(
 #' @examples
 #' # Path to the sample template file included in the package
 #' template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-#' output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
+#'
+#' temp_dir <- normalizePath(tempdir(), winslash = "/")
+#' output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
 #'
 #' # Create a dictionary by using the getDictionary function on the sample template file
 #' result <- getBatchDictionary(template_path, output_paths)
@@ -145,7 +149,9 @@ checkBatchDictionary <- function(batchDictionary) {
 #' @examples
 #' # Path to the sample template file included in the package
 #' template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-#' output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
+#'
+#' temp_dir <- normalizePath(tempdir(), winslash = "/")
+#' output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
 #'
 #' # Create a dictionary by using the getDictionary function on the sample template file
 #' result <- getBatchDictionary(template_path, output_paths)
@@ -171,7 +177,7 @@ batchDocket <- function(filename, batchDictionary) {
     stop()
   }
 
-  temp_dir <- paste0(filename, "_dockettemp") #Temp directory for holding files
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp") #Temp directory for holding files
   zipfile_xml <- open_zipfile(filename) #Creates temp file and extracts the content
   on.exit(close_unzip_file(filename)) #Removes temp file
 
@@ -188,7 +194,7 @@ createBatchDocket <- function(filename, batchDictionary, zipfile_xml, docket.dic
   old_wd <- getwd()
   on.exit(setwd(old_wd))
 
-  temp_dir <- paste0(filename, "_dockettemp")
+  temp_dir <- paste0(normalizePath(tempdir(), winslash = "/"), "/dockettemp")
   #Join private dictionary with instance of batch dictionary
   full_dictionary <- merge(docket.dictionary.private, batchDictionary, by = "flag", all.x=TRUE, all.y=FALSE) #Joins private dictionary with user dictionary
 

@@ -1,6 +1,6 @@
 Package: docket
-Title: Automated Document Template Processing
-Version: 1.20
+Title: Insert R Data into 'Word' Documents
+Version: 1.33
 Authors@R: c(
     person(given = "Jonathan", family = "Conrad", email = "JonathanGConrad@gmail.com", role = c("aut", "cre")),
     person(given = "Ian", family = "Conrad", email = "ianwconrad11@gmail.com", role = "ctb")
@@ -16,9 +16,9 @@ URL: https://github.com/JonathanConrad98/docket
 BugReports: https://github.com/JonathanConrad98/docket/issues
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2023-10-31 20:45:18 UTC; Jonra
+Packaged: 2024-07-10 20:48:35 UTC; Jonra
 Author: Jonathan Conrad [aut, cre],
   Ian Conrad [ctb]
 Maintainer: Jonathan Conrad <JonathanGConrad@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-10-31 22:40:02 UTC
+Date/Publication: 2024-07-12 11:50:02 UTC

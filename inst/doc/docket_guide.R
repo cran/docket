@@ -36,7 +36,7 @@ print(checkDictionary(myDictionary))
 
 
 ## -----------------------------------------------------------------------------
-output_path <- paste0(dirname(template_path), "/output document.docx")
+output_path <- paste0(normalizePath(tempdir(), winslash = "/"), "/output document.docx")
 
 #If docket accepts the input dictionary as valid, create a filled template
 
@@ -54,7 +54,9 @@ include_graphics(output_screenshot)
 ## -----------------------------------------------------------------------------
 # Path to the sample template file included in the package
 template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
+
+temp_dir <- normalizePath(tempdir(), winslash = "/")
+output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
 
 # Create a dictionary by using the getDictionary function on the sample template file
 myBatchDictionary <- getBatchDictionary(template_path, output_paths)

@@ -26,7 +26,8 @@ Scans the input file for strings enclosed by flag wings: « ». Creates a replac
 \examples{
 # Path to the sample template file included in the package
 template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
+temp_dir <- normalizePath(tempdir(), winslash = "/")
+output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
 
 # Create a dictionary by using the getDictionary function on the sample template file
 result <- getBatchDictionary(template_path, output_paths)

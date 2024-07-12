@@ -1,12 +1,3 @@
----
-title: "A Guide to the docket Package"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{docket_guide}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
 # Introduction
 
 The 'docket' package is designed to streamline document creation by allowing users to populate data from an R environment into templates created in third-party software such as 'Microsoft Word'.
@@ -141,7 +132,7 @@ Use docket() to replace the identified flags in the template with R data.
 ### Example
 
 ```{r}
-output_path <- paste0(normalizePath(tempdir(), winslash = "/"), "/output document.docx")
+output_path <- paste0(dirname(template_path), "/output document.docx")
 
 #If docket accepts the input dictionary as valid, create a filled template
 
@@ -175,9 +166,7 @@ A batch dictionary is similar to a normal dictionary in that each row represents
 ```{r}
 # Path to the sample template file included in the package
 template_path <- system.file("batch_document", "batchTemplate.docx", package="docket")
-
-temp_dir <- normalizePath(tempdir(), winslash = "/")
-output_paths <- as.list(paste0(temp_dir, paste0("/batch document", 1:5, ".docx")))
+output_paths <- as.list(paste0(dirname(template_path), paste0("/batch document", 1:5, ".docx")))
 
 # Create a dictionary by using the getDictionary function on the sample template file
 myBatchDictionary <- getBatchDictionary(template_path, output_paths)

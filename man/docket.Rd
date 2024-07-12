@@ -23,7 +23,7 @@ and replaces them with corresponding data. The edited content is then saved to a
 \examples{
 # Path to the sample template included in the package
 template_path <- system.file("template_document", "Template.docx", package="docket")
-output_path <- paste0(dirname(template_path), "/output document.docx")
+output_path <- paste0(normalizePath(tempdir(), winslash = "/"), "/output document.docx")
 
 # Create a dictionary by using the getDictionary function on the sample template file
 result <- getDictionary(template_path)
